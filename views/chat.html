@@ -19,7 +19,7 @@
 	<input class='form-control' id='message' placeholder='Type Message Here' autofocus>
 	<button type='submit' class='btn btn-primary'>Send</button>
 	<a href="javascript:clear()" class="btn btn-default">Clear Log</a>
-	<!--<button class="btn btn-default" onclick="Clear()">Clear Log</button>-->
+	<a href="javascript:shareLocation()" class="btn btn-default">Share Location</a>
 </form>
 
 <script src='https://icode.run/jquery.js'></script>
@@ -43,6 +43,17 @@
 	}
 	function clear() {
 		$('#log').html('')
+	}
+	function shareLocation() {
+		navigator.geolocation.getCurrentPosition(positionSuccess, positionError, { enablehighpositionAccuracy: true })
+	}
+
+	function positionSuccess(params) {
+		console.log(params);
+	}
+
+	function positionError(params) {
+		console.log(params);
 	}
 </script>
 
