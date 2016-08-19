@@ -1,5 +1,5 @@
 ## Git Clone
-git clone https://github.com/FSDotNetDev/Codestar
+git clone https://github.com/FSDotNetDev/codestar.git
 
 ## Installation Package
 ```bash
