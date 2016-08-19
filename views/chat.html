@@ -47,14 +47,33 @@
 	function shareLocation() {
 		navigator.geolocation.getCurrentPosition(positionSuccess, positionError, { enablehighpositionAccuracy: true })
 	}
-
-	function positionSuccess(params) {
-		console.log(params);
+	function positionSuccess(p) {
+		var s = "Location: " +
+		p.coords.latitude + ", " +
+		p.coords.longitude
+		var a = "<a href='https://google.com' + "/map
+		socket.send({action:'chat', value:s})
+	}
+	function positionError(e) {
+		console.log(e);
 	}
 
-	function positionError(params) {
-		console.log(params);
+	var r = new webkitSpeechRecognition();
+	r.lang = 'th'
+	r.onresult = function (e) {
+		var s = e.results[0][0].transcript
+		socket.send({action: 'chat', value:s})
 	}
+	$('#message').keydown( e => { 
+		if (e.which == 16) {
+			r.start()
+		}	
+	})
+	$('#message').keyup( e => {
+		if (e.which == 16) {
+			r.stop()
+		}
+	})
 </script>
 
 <% include footer.html %>
